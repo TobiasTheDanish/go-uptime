@@ -20,6 +20,8 @@ func NewServer() *http.Server {
 		port: port,
 	}
 
+	StartWatch([]string{"http://localhost:4000/status"})
+
 	// Declare Server config
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", NewServer.port),
