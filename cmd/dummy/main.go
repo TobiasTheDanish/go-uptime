@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand/v2"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -11,6 +12,9 @@ func main() {
 
 	mux.HandleFunc("GET /status", func(w http.ResponseWriter, r *http.Request) {
 		f := rand.Float32()
+		delay := int64(f * 1000)
+		fmt.Println("sleeping for:", delay)
+		time.Sleep(time.Duration(delay * int64(time.Millisecond)))
 
 		if f >= 0.9 {
 			fmt.Println("Server error")
